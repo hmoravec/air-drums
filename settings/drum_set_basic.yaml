@@ -1,0 +1,35 @@
+controllers:
+  left_stick:
+    color_high: [161, 189, 244]
+    color_low: [128, 53, 49]
+    name: Left stick
+  right_stick:
+    color_high: [115, 255, 255]
+    color_low: [91, 217, 75]
+    name: Right stick
+percussion:
+  crash:
+    center_position: [380, 60]
+    name: Crash
+    radius: 50
+    sound_path: drum_sounds/basic/crash/crash.wav
+  hihat_closed:
+    center_position: [90, 190]
+    name: Hi-hat closed
+    radius: 60
+    sound_path: drum_sounds/basic/hihat_closed/hihat_closed.wav
+  kick:
+    center_position: [380, 300]
+    name: Kick
+    radius: 60
+    sound_path: drum_sounds/basic/kick/kick.wav
+  snare:
+    center_position: [240, 300]
+    name: Snare
+    radius: 60
+    sound_path: drum_sounds/basic/snare/snare.wav
+  tom_low:
+    center_position: [520, 300]
+    name: Tom low
+    radius: 60
+    sound_path: drum_sounds/basic/tom_low/tom_low.wav

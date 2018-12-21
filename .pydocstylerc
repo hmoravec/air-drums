@@ -1,0 +1,3 @@
+[pydocstyle]
+match-dir = (?!venv|docs)[^\.].*
+add-ignore = D107
