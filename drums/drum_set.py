@@ -18,7 +18,8 @@ class DrumSet:
         self.controllers = [Controller(key,
                                        setting['name'],
                                        HSV(*setting['color_low']),
-                                       HSV(*setting['color_high']))
+                                       HSV(*setting['color_high']),
+                                       setting['velocity_max_volume'])
                             for key, setting in self.settings.settings['controllers'].items()]
 
     def play(self):
@@ -26,9 +27,12 @@ class DrumSet:
         for controller in self.controllers:
             for percussion in self.percussion:
                 if percussion.is_played(controller):
-                    percussion.play()
+                    percussion.play(controller)
 
-    def setup_drum_set(self):
-        """Set up drum set: calibrate controllers."""
+    def setup_drum_set(self, save: bool = True):
+        """Set up drum set: calibrate controllers and save to settings file."""
         for controller in self.controllers:
-            controller.calibrate_color(self.settings)
+            controller_settings = self.settings.settings['controllers'][controller.key]
+            controller.calibrate(controller_settings)
+            if save:
+                self.settings.save_settings()

@@ -1,0 +1,15 @@
+echo "Updating documentation"
+cd docs
+sphinx-apidoc -f -o source ..
+make clean
+make html
+cd ..
+
+echo "Normalizing code formatting (now disabled)"
+# black -S -l 88 drums play_drums.py
+
+echo "Checking docstrings quality"
+pydocstyle
+
+echo "Checking code quality"
+pylint drums play_drums.py

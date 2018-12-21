@@ -11,7 +11,8 @@ The drums will be controlled by drum sticks with colored heads and colored spots
 
 
 ## Playing
-Play the air drums by `python3 play_drums.py`.
+Python 3.6 or higher is required.
+Play the air drums by running `play_drums.py`. To quit the application press `q`.
 
 
 ### Settings
@@ -26,10 +27,9 @@ Go through all calibration points. Then calibrate the
 second drum stick. The calibration can be quited by `q`.
 
 
-## Plans for the next version
+## Plans for the next versions
 - Calibrate the position of percussion by playing them virtually in the air.
 - Play the sound when the drum stick changed the acceleration and is close to the percussion.
-- Add volume.
 - Add better percussion sounds.
-- Improve response time if needed.
+- Improve sound latency.
 - Add image with drum scene on the output instead of the video stream.

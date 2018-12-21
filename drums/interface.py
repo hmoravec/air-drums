@@ -34,20 +34,17 @@ class Interface:
         """Calibrate controllers, run input stream, tracking and output video stream."""
         LOG.debug('Starting interface.')
 
-        for controller in self.drum_set.controllers:
-            controller_settings = self.settings.settings['controllers'][controller.key]
-            controller.calibrate_color(controller_settings)
-            self.settings.save_settings()
+        self.drum_set.setup_drum_set()
 
         input_video_stream = InputVideoStream(frames=self.frames_to_track)
         tracker = Tracker(self.frames_to_track, self.frames_tracked, self.drum_set)
-
         output_video_stream = OutputVideoStream(drum_set=self.drum_set, frames=self.frames_tracked)
 
-        input_thread = Thread(name='input_stream',
-                              target=input_video_stream.start_stream)
-        tracker_thread = Thread(name='tracker',
-                                target=tracker.start_tracker)
+        input_thread = Thread(name='input_stream', target=input_video_stream.start_stream)
+        tracker_thread = Thread(name='tracker', target=tracker.start_tracker)
+
+        input_thread.daemon = True
+        tracker_thread.daemon = True
         input_thread.start()
         tracker_thread.start()
         output_video_stream.start_stream()

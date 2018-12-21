@@ -1,12 +1,14 @@
 controllers:
   left_stick:
-    color_high: [161, 189, 244]
-    color_low: [128, 53, 49]
+    color_high: [115, 255, 230]
+    color_low: [88, 107, 71]
     name: Left stick
+    velocity_max_volume: 3620
   right_stick:
-    color_high: [115, 255, 255]
-    color_low: [91, 217, 75]
+    color_high: [180, 255, 226]
+    color_low: [154, 104, 67]
     name: Right stick
+    velocity_max_volume: 3620
 percussion:
   crash:
     center_position: [380, 60]

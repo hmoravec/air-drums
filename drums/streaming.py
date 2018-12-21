@@ -115,7 +115,6 @@ class OutputVideoStream:
     LOOP_SLEEP = 10
 
     def __init__(self, drum_set: 'DrumSet', frames: Deque[Frame] = None):
-        LOG.debug('Initializing output video stream.')
         self.stream_enabled = True
         self.frames = frames
         self.drum_set = drum_set
@@ -123,6 +122,8 @@ class OutputVideoStream:
     def start_stream(self):
         """Stream frames from the queue to output with added information."""
         LOG.debug('Starting output video stream.')
+        cv2.namedWindow('Air drums', cv2.WINDOW_NORMAL)
+        cv2.setWindowProperty('Air drums', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
         while self.stream_enabled:
             if not self.frames:
                 continue
@@ -141,7 +142,7 @@ class OutputVideoStream:
         cv2.putText(frame.image, f'FPS: {frame.fps:.0f} f/s', (10, 20),
                     **OutputVideoStream.IMAGE_TEXT_PARAMETERS)
         # Show lag between current time and frame timestamp
-        lag = (time.time() - frame.timestamp)
+        lag = time.time() - frame.timestamp
         cv2.putText(frame.image, f'Lag: {lag:.2f} s', (10, 40),
                     **OutputVideoStream.IMAGE_TEXT_PARAMETERS)
 
@@ -154,4 +155,8 @@ class OutputVideoStream:
         # Show the frame in window
         cv2.imshow('Air drums', frame.image)
         # Sleep a bit so the image can be rendered
-        cv2.waitKey(OutputVideoStream.LOOP_SLEEP)
+        key = cv2.waitKey(OutputVideoStream.LOOP_SLEEP)
+        # Stop output steaming. The other threads will terminate automatically
+        # as they are deamon threads.
+        if key == ord('q'):
+            self.stop_stream()
