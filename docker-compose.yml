@@ -1,0 +1,12 @@
+version: '2.1'
+
+services:
+  air_drums:
+    image: air_drums
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - APP_DIR
+    env_file:
+      - air_drums.env
