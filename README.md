@@ -28,8 +28,10 @@ second drum stick. The calibration can be quited by `q`.
 
 
 ## Plans for the next versions
+- Add automatic tracker calibration.
+- Improve tracker for fast movements.
 - Calibrate the position of percussion by playing them virtually in the air.
 - Play the sound when the drum stick changed the acceleration and is close to the percussion.
-- Add better percussion sounds.
-- Improve sound latency.
+- Add better and more percussion sounds (as submodule).
 - Add image with drum scene on the output instead of the video stream.
+- Create GUI using Kivy.
